@@ -13,8 +13,9 @@ createPlugin -n <plugin name>
 
 more options
 ```
---no-webpack // disable webpack and karma tests
---no-test // disable php unit tests
+--no-webpack // disable webpack and karma tests, by default true
+--no-test // disable php unit tests, by default true
+--react // set up environment for react build and tests, by default false
 ```
 
 ## uninstall
