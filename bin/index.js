@@ -8,13 +8,14 @@ const rimraf = require('rimraf');
 const PLUGIN_REPO = 'git@github.com:jinjin-gsma/plugin-boilerplate.git';
 
 const options = yargs
- .usage('Usage: -n <plugin name> --no-webpack --no-test')
- .option('n', { alias: 'name', describe: 'Name of your plugin', type: 'string', demandOption: true })
- .option('webpack', { alias:'webpack', describe: 'disable webpack and karma tests', type: 'boolean', default: true, demandOption: false })
- .option('test', { alias:'test', describe: 'disable php unit tests', type: 'boolean', default: true, demandOption: false })
- .argv;
+    .usage('Usage: -n <plugin name> --no-webpack --no-test --react')
+    .option('n', { alias: 'name', describe: 'Name of your plugin', type: 'string', demandOption: true })
+    .option('webpack', { alias:'webpack', describe: 'disable webpack and karma tests', type: 'boolean', default: true, demandOption: false })
+    .option('test', { alias:'test', describe: 'disable php unit tests', type: 'boolean', default: true, demandOption: false })
+    .option('react', { alias:'react', describe: 'set up environment for react build and tests', type: 'boolean', default: false, demandOption: false })
+    .argv;
 
-const greeting = `Creating ${options.name}! with webpack = ${options.webpack}, test = ${options.test} `;
+const greeting = `Creating ${options.name}! with webpack = ${options.webpack}, test = ${options.test}, react = ${options.react} `;
 
 console.log(greeting);
 
@@ -38,7 +39,8 @@ fs.rename('./plugin-boilerplate', `./${options.name}`, function (err) {
 
 const data = {
     pluginName: options.name,
-    noWebpack: !options.webpack
+    webpack: options.webpack,
+    react: options.react
 };
 
 ejs.renderFile(`./${options.name}/package.json.ejs`, data, (err, result) => {
@@ -97,6 +99,15 @@ if (!options.test) {
 
     rimraf(`./${options.name}/bin`, () => {
         console.log('bin directory Deleted!');
+    });
+}
+
+if (!options.react) {
+    fs.unlink(`./${options.name}/tests/setUpTest.js`, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
     });
 }
 
