@@ -5,7 +5,7 @@ const ejs = require('ejs');
 const fs = require('fs');
 const rimraf = require('rimraf');
 
-const PLUGIN_REPO = 'git@github.com:jinjin-gsma/plugin-boilerplate.git';
+const PLUGIN_REPO = 'git@github.com:GSMA/gsma-plugin-boilerplate.git';
 
 const options = yargs
     .usage('Usage: -n <plugin name> --no-webpack --no-test --react')
