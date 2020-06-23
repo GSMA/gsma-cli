@@ -1,6 +1,6 @@
 ## install
 ```
-git clone git@github.com:jinjin-gsma/gsma-cli.git
+git clone git@github.com:gsma/gsma-cli.git
 cd gsma-cli
 npm install -g .
 ```
