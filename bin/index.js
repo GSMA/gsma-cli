@@ -22,7 +22,7 @@ console.log(greeting);
 const shell = require('shelljs');
 shell.exec(`git clone ${PLUGIN_REPO}`);
 
-fs.rename('./plugin-boilerplate', `./${options.name}`, function (err) {
+fs.rename('./gsma-plugin-boilerplate', `./${options.name}`, function (err) {
     if (err) throw err;
     console.log('renamed folder complete');
 
